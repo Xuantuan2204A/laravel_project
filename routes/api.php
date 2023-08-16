@@ -22,6 +22,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login']);
 Route::post('register', [App\Http\Controllers\AuthController::class, 'register']);
 
+Route::get('test', [App\Http\Controllers\BlogController::class, 'index']);
+Route::post('create_blog', [App\Http\Controllers\BlogController::class, 'createBlog']);
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('show_all_post', [App\Http\Controllers\BlogController::class, 'index']);
+    Route::post('create_blog', [App\Http\Controllers\BlogController::class, 'createBlog']);
+});
+
 Route::get('test-auth', function () {
     return 'test';
 });
